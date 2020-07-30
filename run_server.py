@@ -7,6 +7,7 @@
 # import the necessary packages
 import dill
 import pandas as pd
+import os
 dill._dill._reverse_typemap['ClassType'] = type
 #import cloudpickle
 import flask
@@ -77,4 +78,6 @@ if __name__ == "__main__":
 		"please wait until server has fully started"))
 	modelpath = "./models/logreg_pipeline.dill"
 	load_model(modelpath)
-	app.run()
+	port = int(os.environ.get('PORT', 5000))
+	app.run(host='0.0.0.0', port=port, debug=True)
+	
