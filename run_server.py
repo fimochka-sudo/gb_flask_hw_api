@@ -78,5 +78,5 @@ if __name__ == "__main__":
 		"please wait until server has fully started"))
 	modelpath = "./models/logreg_pipeline.dill"
 	load_model(modelpath)
-	#port = int(os.environ.get('PORT', 5000))
-	app.run(debug=True)
+	port = int(os.environ.get('PORT', 5000))
+	app.run(host='0.0.0.0', debug=True, port=port)
