@@ -30,6 +30,9 @@ def load_model(model_path):
 	with open(model_path, 'rb') as f:
 		model = dill.load(f)
 
+modelpath = "./models/logreg_pipeline.dill"
+load_model(modelpath)
+
 @app.route("/", methods=["GET"])
 def general():
 	return """Welcome to fraudelent prediction process. Please use 'http://<address>/predict' to POST"""
@@ -76,7 +79,5 @@ def predict():
 if __name__ == "__main__":
 	print(("* Loading the model and Flask starting server..."
 		"please wait until server has fully started"))
-	modelpath = "./models/logreg_pipeline.dill"
-	load_model(modelpath)
 	port = int(os.environ.get('PORT', 5000))
 	app.run(host='0.0.0.0', debug=True, port=port)
